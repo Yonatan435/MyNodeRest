@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>jQuery UI Autocomplete - Default functionality</title>
+  <!-- <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css"> -->
+  <link rel="stylesheet" href="jquery-ui.css">
+  <!-- <link rel="stylesheet" href="/resources/demos/style.css"> -->
+  <script src="Libraries\jquery.js"></script>
+  <script src="Libraries\jquery-ui.js"></script>
+  <script>
+  $( function() {
+    var availableTags = [
+      "ActionScript",
+      "AppleScript",
+      "Asp",
+      "BASIC",
+      "C",
+      "C++",
+      "Clojure",
+      "COBOL",
+      "ColdFusion",
+      "Erlang",
+      "Fortran",
+      "Groovy",
+      "Haskell",
+      "Java",
+      "JavaScript",
+      "Lisp",
+      "Perl",
+      "PHP",
+      "Python",
+      "Ruby",
+      "Scala",
+      "Scheme"
+    ];
+    $( "#tags" ).autocomplete({
+        select: function( event, ui ) {
+            var onSuccess = function(res)
+            {
+                console.log(res);
+            };
+            var data = {};
+            data.a=2;
+            $.ajax({
+  type: "GET",
+  url: 'http://localhost:3000/api/firstController',
+  data: data,
+  success: onSuccess,
+  dataType: "json"
+});
+        //     var resultArray;
+        //     var xmlhttp = new XMLHttpRequest();
+        //     if ("withCredentials" in xmlhttp) {
+        //     var result = xmlhttp.open("GET", 'http://localhost:3000/api/firstController', true);
+        //     } else if (typeof XDomainRequest != "undefined") {
+
+        // // Otherwise, check if XDomainRequest.
+        // // XDomainRequest only exists in IE, and is IE's way of making CORS requests.
+        // xhr = new XDomainRequest();
+        // xhr.open(method, url);
+
+        // } else {
+
+        // // Otherwise, CORS is not supported by the browser.
+        // xhr = null;
+
+        // }
+        //             xmlhttp.send();
+        //     xmlhttp.onreadystatechange = function () {
+        //         if (this.readyState == 4 && this.status == 200) {
+        //         //     resultArray = JSON.parse(this.responseText);
+        //         //     processJsonResults(resultArray);
+        //         console.log("R");
+        //         }
+            
+        //     }
+        }
+    });
+    
+   
+
+    $( "#tags" ).autocomplete({
+      source: availableTags
+    });
+    
+  } );
+  </script>
+</head>
+<body>
+ 
+<div class="ui-widget">
+  <label for="tags">Tags: </label>
+  <input id="tags">
+</div>
+ 
+ 
+</body>
+</html>
